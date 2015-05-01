@@ -22,9 +22,10 @@ int main()
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     doc->Accept(writer);
-
-    log.on("test", [] () {
-       cout << "Test event received" << endl;
+    // testing lambdas and variable capture..
+    int t = 0;
+    log.on("test", [&t] () {
+       cout << "Test event received " << ++t << endl;
     });
 
     log.trigger("test");
