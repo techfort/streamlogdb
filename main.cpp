@@ -23,6 +23,12 @@ int main()
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     doc->Accept(writer);
 
+    log.on("test", [] () {
+       cout << "Test event received" << endl;
+    });
+
+    log.trigger("test");
+
     cout << "Stringified data: " << buffer.GetString() << endl;
     return 0;
 }
