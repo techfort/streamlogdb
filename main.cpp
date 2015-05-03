@@ -4,8 +4,10 @@
 #include "include/rapidjson/document.h"
 #include "include/rapidjson/writer.h"
 #include "include/rapidjson/stringbuffer.h"
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 int main()
 {
@@ -14,6 +16,8 @@ int main()
 
     StreamLog::Event * event = new StreamLog::Event();
     event->id = "hello-stream-log";
+    event->type = StreamLog::Event::Type::UPDATE;
+    event->timestamp = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
     rapidjson::Document * doc = new rapidjson::Document();
     doc->Parse("{\"name\":\"joe\", \"age\": 40}");
     event->data = doc;

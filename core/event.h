@@ -5,6 +5,7 @@
 #include "include/rapidjson/writer.h"
 #include "include/rapidjson/stringbuffer.h"
 #include <string>
+#include <chrono>
 
 namespace StreamLog {
     class Event
@@ -17,6 +18,7 @@ namespace StreamLog {
         rapidjson::Document * data;
         Type type;
         std::string id;
+        std::chrono::milliseconds timestamp;
     };
 }
 #endif // EVENT_H
