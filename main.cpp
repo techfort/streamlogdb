@@ -26,6 +26,7 @@ int main()
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     doc->Accept(writer);
+
     // testing lambdas and variable capture..
     int t = 0;
     log.on("test", [&t] () {
